@@ -22,7 +22,7 @@ class I2CMotorDriver {
 
     bool isConnected() const {
         uint8_t resp;
-        i2c.read_byte(dev_addr, ping_reg, resp);
+        i2c.read_reg_byte(dev_addr, ping_reg, resp);
         return resp == ack;
     }
 
@@ -38,6 +38,6 @@ class I2CMotorDriver {
         std::memcpy(&packet[2], &s1_8, 1);
         std::memcpy(&packet[3], &s2_8, 1);
 
-        i2c.write_block(dev_addr, cmd_reg, 4, packet);
+        i2c.write_reg_block(dev_addr, cmd_reg, 4, packet);
     }
 };
